@@ -1,0 +1,109 @@
+IsolationForest(behaviour='old', bootstrap=False,
+        contamination=0.001727485630620034, max_features=1.0,
+        max_samples=256, n_estimators=150, n_jobs=-1, random_state=None,
+        verbose=0)
+
+TRAIN
+Accuracy:  0.9975421887686805
+Confusion Matrix:  [[227171    280]
+ [   280    114]]
+F1:  0.2893401015228426
+False positive rate:  0.7106598984771574
+
+TEST
+Accuracy:  0.9975773322565921
+Confusion Matrix:  [[56796    70]
+ [   68    28]]
+F1:  0.288659793814433
+False positive rate:  0.7142857142857143
+
+IsolationForest(behaviour='old', bootstrap=False,
+        contamination=0.001727485630620034, max_features=1.0,
+        max_samples=512, n_estimators=150, n_jobs=-1, random_state=None,
+        verbose=0)
+
+TRAIN
+Accuracy:  0.997463187693388
+Confusion Matrix:  [[227162    289]
+ [   289    105]]
+F1:  0.26649746192893403
+False positive rate:  0.733502538071066
+
+TEST
+Accuracy:  0.9976299989466662
+Confusion Matrix:  [[56801    72]
+ [   63    26]]
+F1:  0.27807486631016043
+False positive rate:  0.7346938775510204
+
+IsolationForest(behaviour='old', bootstrap=True,
+        contamination=0.001727485630620034, max_features=1.0,
+        max_samples=512, n_estimators=150, n_jobs=-1, random_state=None,
+        verbose=0)
+
+TRAIN
+Accuracy:  0.9975509666659351
+Confusion Matrix:  [[227172    279]
+ [   279    115]]
+F1:  0.2918781725888325
+False positive rate:  0.7081218274111675
+IsolationForest(behaviour='old', bootstrap=True,
+        contamination=0.001727485630620034, max_features=1.0,
+        max_samples=256, n_estimators=150, n_jobs=-1, random_state=None,
+        verbose=0)
+TEST
+Accuracy:  0.9977353323268143
+Confusion Matrix:  [[56801    66]
+ [   63    32]]
+F1:  0.33160621761658027
+False positive rate:  0.673469387755102
+
+TRAIN
+Accuracy:  0.9973578529263315
+Confusion Matrix:  [[227150    301]
+ [   301     93]]
+F1:  0.23604060913705585
+False positive rate:  0.7639593908629442
+
+TEST
+Accuracy:  0.997542221129876
+Confusion Matrix:  [[56794    70]
+ [   70    28]]
+F1:  0.2857142857142857
+False positive rate:  0.7142857142857143
+
+
+128 -> negligable difference ~72 FPR
+
+128 bootstrap = false
+
+TRAIN
+Accuracy:  0.9974807434878975
+Confusion Matrix:  [[227164    287]
+ [   287    107]]
+F1:  0.2715736040609137
+False positive rate:  0.7284263959390863
+
+TEST
+Accuracy:  0.997542221129876
+Confusion Matrix:  [[56792    68]
+ [   72    30]]
+F1:  0.30000000000000004
+False positive rate:  0.6938775510204082
+
+1024 bootstrap true
+
+TRAIN
+Accuracy:  0.9975773003576993
+Confusion Matrix:  [[227175    276]
+ [   276    118]]
+F1:  0.29949238578680204
+False positive rate:  0.700507614213198
+
+TEST
+Accuracy:  0.9977528878901724
+Confusion Matrix:  [[56801    65]
+ [   63    33]]
+F1:  0.34020618556701027
+False positive rate:  0.6632653061224489
+
