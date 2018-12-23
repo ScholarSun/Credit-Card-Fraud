@@ -1,5 +1,19 @@
 # Credit-Card-Fraud
-In this project, we are presented with an anomaly detection problem. In this read me, I will try and explain my thought process in model selection, data analysis and visualization. The notebook itself has some commentary in between steps as well to improve the flow.
+In this project, we are presented with an anomaly detection problem. In this read me, I will try and explain my thought process in model selection, data analysis and visualization. The notebook itself has some commentary in between steps as well to improve the flow. Note: the classification notebook is supposed to be read after the anomaly detection notebook. Let's jump right in!
 
-Note: the classification notebook is supposed to be read after the anomaly detection notebook.
+## Data Exploration
+The first step is to get an understanding of the data we are working with. 
+The first thing we notice is that our features are anonomyized with the excepion of Time and Amount. All the other features are named V- to protect the privacy of the credit card holdres. This makes it a little harder to understand the "reality" of correlations but doesnt really impact our model's accuracy. All features have data type float and are PCA trasnformed. PCA transform is a dimension reduction method that transforms a dataset into a set of linearly uncorrelated features. Geometrically, it can be interpreted as finding the principal axes of an n dimensional elipsoid. PCA transform also has the condition that the data should be scaled (i.e. mean = 0 var = 1). So we only scale time and amount.
+We also check how many datapoints of each class we have. It is around 500 fraud cases to 250000 normal cases.
+Another interesting feature is that we are given time and amount. These might have some interesting properties so I plot them on a scater plot, however, there seems to be no visible correlation/patterns.
+Next we plot the continuous histogram over the distributions of the data points (of each class) over each of the features to see the shape of the distribution and any possible correlations. This sets us up for the possibility of using a gaussian analysis model. 
 
+I'm curious our dataset can be "clustered". I use a TSNE transform to project our dataset onto a 2-dimesnionsal space. It does a good job of clustering our data. Seems like we can almost draw a line cutting between the normal and positive cases. However, we must becareful as it is very easy to misinterpret the TSNE transform. The key things to remember: Cluster sizes mean nothing, distance between points mean nothing. TSNE is good for shapes and general idea of datasets. After tuning the hyperparameters and experimenting with different complexities, it seems like we can c
+
+### Model Considerations
+Now, guassian analysis is originally a model used when the dataset is unlabelled. It assumes that features follow a normal/gaussian distribution over all/most of its features and if not it is the data scientists job to reshape/drop features that are unimportant or malformed. Gaussian analysis works on the assumption that anomalies lie far away from the mean of each feature. This 'score' is multiplied over all features and we chose an epsilon threshold to decide how lenient we want to be.
+
+However, since our dataset is labelled, it makes our job alot easier as we can explicitly see the distribution of positive and negative classes for each feature. We know which features are key by recognizing a difference in distribution. For example:
+V15 is a bad feature to perform analysis on as the anomalous datapoints follow almost an exact distribution as those of normal datapoints. However, V12 is a good feature as the anomalous datapoints are seperate from the normal datapoints and we know if datapoints differentiate from the mean of the normal case, it is more likely to be an anomaly. (Question for future me: How to construct a model if we know anomalous data lies strictly on one side of the anomolous data? How does that affecet the model? We assume anomalous data can lie on both sides of the mean in a normal analysis).
+
+Gaussian analysis seems a little bit fussy as we have to choose an epsilon and manipulate the data. After a bit of googling, I stumble upon a model called an Isolation Forest. 
